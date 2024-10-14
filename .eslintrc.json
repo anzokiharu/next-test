@@ -2,6 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "next/typescript",
-    "stylelint-config-standard"
+    "stylelint-config-standard",
+    "plugin:storybook/recommended"
   ]
 }

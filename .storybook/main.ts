@@ -1,44 +1,38 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import path from "path";
+import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from 'vite'
+import linaria from '@linaria/vite'
 
 const config: StorybookConfig = {
-  stories: [
-    "../src/**/*.mdx",
-    "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
-  addons: [
-    "@storybook/addon-onboarding",
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
-  ],
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  addons: [],
   framework: {
-    name: "@storybook/nextjs",
+    name: "@storybook/react-vite",
     options: {},
   },
-  webpackFinal: async (config) => {
-    if (!config.module) {
-      config.module = { rules: [] };
+  docs: {
+    autodocs: "tag",
+  },
+  viteFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': path.resolve(__dirname, '../src'),
+        '@public': path.resolve(__dirname, '../public'),
+      };
     }
 
-    if (!config.module.rules) {
-      config.module.rules = [];
-    }
-
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-typescript", "@linaria/babel-preset"],
+    // Merge custom configuration into the default config
+    return mergeConfig(config, {
+      plugins: [
+        linaria({
+          include: ['**/*.{ts,tsx}'],
+          babelOptions: {
+            presets: ['@babel/preset-typescript', '@babel/preset-react'],
           },
-        },
+        }),
       ],
-    });
-    return config;
+    })
   },
 };
-
 export default config;
