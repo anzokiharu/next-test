@@ -9,8 +9,8 @@ export type mqType = {
 export class cssu {
   public static vunitPc(
     num: number,
-    baseWidth: number | null,
-    unit: unitType = "vw"
+    unit: unitType = "vw",
+    baseWidth: number | undefined = undefined
   ) {
     let base: number;
 
