@@ -33,8 +33,8 @@ export class cssu {
 
   public static vunitSp(
     num: number,
-    baseWidth: number | null,
-    unit: unitType = "vw"
+    unit: unitType = "vw",
+    baseWidth: number | undefined = undefined
   ) {
     let base: number;
     if (unit === "vw" || unit === "vmax" || unit === "vmin") {
@@ -64,5 +64,17 @@ export class cssu {
     md: `@media screen and (min-width: ${Conf.MQ_UP.md}px)`,
     lg: `@media screen and (min-width: ${Conf.MQ_UP.lg}px)`,
     xl: `@media screen and (min-width: ${Conf.MQ_UP.xl}px)`,
+  };
+
+  public static font = {
+    base: `'Noto Sans Japanese Regular', 'Helvetica Neue', 'Segoe UI', Helvetica, '游ゴシック体', YuGothic,
+  'Yu Gothic M', '游ゴシック Medium', 'Yu Gothic Medium', 'メイリオ', Meiryo`,
+    sub: `'Inter', sans-serif`,
+  };
+
+  public static color = {
+    black: "#000",
+    black2: "#222",
+    white: "#fff",
   };
 }

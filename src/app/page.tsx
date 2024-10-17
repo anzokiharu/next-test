@@ -1,30 +1,20 @@
+import { Component } from "@/components/Component";
+import { PrimaryButton } from "@/components/parts/button/PrimaryButton";
 import { css } from "@linaria/core";
 import { cssu } from "@/styles/utils";
 
 const styles = {
-  page: css`
-    background-color: #ffffff;
+  wrap: css`
+    width: 100%;
     height: 100dvh;
-    ${cssu.mqdown.md} {
-      background-color: #000000;
-    }
-
-    /* @media (hover: hover) {
-&:hover {
-background: rgba(0, 0, 0, 0.7);
-}
-} */
-  `,
-
-  copy: css`
-    font-size: ${cssu.vunitPc(80)};
+    background-color: #000;
   `,
 };
-
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <h1 className={styles.copy}>oimooimo!</h1>
-    </div>
+    <>
+      <PrimaryButton text="Hello World" />
+      <Component>Hello World</Component>
+    </>
   );
 }
