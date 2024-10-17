@@ -1,10 +1,7 @@
-/** @type {import('next').NextConfig} */
-const withLinaria = require('next-with-linaria');
+import withLinaria from "next-with-linaria";
 
-const nextConfig = {
-  // App Directory を有効化
-  experimental: {
-    appDir: true,
-  },
-};
-module.exports = withLinaria(nextConfig);
+/** @type {import('next').NextConfig} */
+const config = {};
+
+// 追加で設定をカスタマイズしたい場合は、config に書く
+export default withLinaria(config);
